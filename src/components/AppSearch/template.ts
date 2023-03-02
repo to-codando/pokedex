@@ -5,7 +5,7 @@ import { AppIcon } from "@/components/AppIcon";
 
 export const template: Ttemplate = ({ props }) => html`
   <div class="wrap-ctx">
-    <input type="text"/>
+    <input type="text" placeholder=${props?.placeholder}/>
     <i>
       <${AppIcon} name="search" size=${32}/>
     </i>

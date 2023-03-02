@@ -17,7 +17,7 @@ export const template: Ttemplate = ({ props }) => html`
             <img src="${logo}" alt="Pokedex" class="logo-image-ctx"/>
           </h1>
           <div class="search-wrap-ctx">
-            <${AppSearch} />
+            <${AppSearch} placeholder="Pesquise por nome ou código" />
           </div>
           <div class="user-wrap-ctx">
             <${AppIcon} name="account_circle" size=${64} color="#fff"/>

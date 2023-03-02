@@ -38,6 +38,10 @@ export const styles = () => css`
     background: var(--white)
   }
 
+  .wrap-ctx  > input::placeholder {
+    color: var(--green-moss);
+  }
+
   .wrap-ctx > i {
     position: absolute;
     right:16px;
