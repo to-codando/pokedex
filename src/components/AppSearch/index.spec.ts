@@ -1,12 +1,12 @@
 import { expect } from "@esm-bundle/chai";
 
-import { AppSample } from "./";
+import { AppSearch } from "./";
 import { template } from "./template";
 import { styles } from "./styles";
 
-describe("AppSample", () => {
+describe("AppSearch", () => {
 	const props = { name: "favorite", color: "#666" };
-	const component = AppSample({ props });
+	const component = AppSearch({ props });
 	const template = component.template({ props });
 
 	it("Should have property object", () => {
