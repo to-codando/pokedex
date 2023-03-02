@@ -1,7 +1,10 @@
 import { html, css } from "iares";
 
+import { AppHeader } from "@/components/AppHeader";
+
 const styles = () => css`
-  app-main {
+  app-main,
+  .wrap-ctx {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -12,8 +15,8 @@ const styles = () => css`
 `;
 
 const template = () => html`
-  <div class="wrap">
-
+  <div class="wrap-ctx">
+    <${AppHeader}/>
   </div>
 `;
 
