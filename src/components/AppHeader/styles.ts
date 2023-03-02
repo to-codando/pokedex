@@ -14,9 +14,22 @@ export const styles = () => css`
     align-items: center
   }
 
+  .header-grid-ctx {
+    display: grid;
+    grid-template-columns: 154px 1fr 64px;
+    grid-gap: 0 2em;
+    width:100%;
+  }
+
+  .search-wrap-ctx {
+    display: flex;
+    width:100%;
+    height:48px;
+  }
+
   .logo-image-ctx {
     position: relative;
-    top: -5px;
+    top: 5px;
   }
 
 
