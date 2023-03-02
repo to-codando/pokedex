@@ -1,8 +1,8 @@
 import { Tparams, TtemplateReturn } from "./types.js";
-import { Tprops } from "./types.js";
+import { Tprops } from "./types";
 
-import { template } from "./template.js";
-import { styles } from "./styles.js";
+import { template } from "./template";
+import { styles } from "./styles";
 
 export type Tcomponent = {
 	(params: Tparams): {
@@ -12,7 +12,7 @@ export type Tcomponent = {
 	};
 };
 
-export const AppHeader: Tcomponent = ({ props }) => {
+export const AppLogo: Tcomponent = ({ props }) => {
 	return {
 		template,
 		styles,

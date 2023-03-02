@@ -1,8 +1,8 @@
 import { html } from "iares";
-import { Ttemplate } from "./types.js";
+import { Ttemplate } from "./types";
 
 export const template: Ttemplate = ({ props }) => html`
   <div class="wrap-ctx">
-    <h1>App Header</h1>
+    <slot id="content"></slot>
   </div>
 `;
