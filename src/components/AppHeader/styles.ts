@@ -21,16 +21,16 @@ export const styles = () => css`
     width:100%;
   }
 
+  .logo-ctx,
   .search-wrap-ctx {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .search-wrap-ctx  {
     width:100%;
-    height:48px;
   }
-
-  .logo-image-ctx {
-    position: relative;
-    top: 5px;
-  }
-
 
 `;

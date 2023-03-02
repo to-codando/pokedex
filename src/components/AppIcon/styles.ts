@@ -1,9 +1,14 @@
 import { css } from "iares";
 
 export const styles = () => css`
-  .icon-ctx {
+  app-icon,
+  app-icon-type {
     display:flex;
     justify-content: center;
     align-items:center;
+  }
+
+  app-icon-type {
+    color: var(--green-smooth)
   }
 `;

@@ -1,7 +1,7 @@
 import { html } from "iares";
 import { Ttemplate } from "./types";
 
-const AppIconSize: Ttemplate = ({ props }) => {
+const AppIconType: Ttemplate = ({ props }) => {
 	if (props?.size && props?.color) {
 		return html`
       <span
@@ -32,7 +32,7 @@ const AppIconSize: Ttemplate = ({ props }) => {
 };
 
 export const template: Ttemplate = ({ props }) => html`
-  <${AppIconSize}
+  <${AppIconType}
     name=${props?.name}
     size=${props?.size}
     color=${props?.color}
