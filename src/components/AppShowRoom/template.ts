@@ -1,6 +1,17 @@
 import { html } from "iares";
 import { Ttemplate } from "./types.js";
 
-export const template: Ttemplate = ({ props }) => html`
-    <h1>App Show Room</h1>
+import { AppToggle } from "@/components/AppToggle";
+import { AppContent } from "@/components/AppContent";
+
+export const template: Ttemplate = ({ state, props }) => html`
+    <div class="wrap-ctx">
+      <div class="filter-wrap-ctx">
+        <${AppContent}>
+        <slot target="content">
+          <${AppToggle} data=${state.orderByOptions} />
+        </slot>
+        </>
+      </div>
+    </div>
 `;
