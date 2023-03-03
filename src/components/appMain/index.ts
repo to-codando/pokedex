@@ -17,6 +17,7 @@ const styles = () => css`
 const template = () => html`
   <div class="wrap-ctx">
     <${AppHeader}/>
+    <router-view></router-view>
   </div>
 `;
 

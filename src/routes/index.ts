@@ -1,29 +1,22 @@
-// import { render } from 'iares'
+import { html, render } from "iares";
+import { TRoute } from "iares";
 
-// import { appDefault } from '@/components/appDefault'
-// import { appHeader } from '@/components/appHeader'
-// import { appHome } from '@/components/appHome'
-// import { appMenu } from '@/components/appMenu'
+import { AppDefault } from "@/components/AppDefault";
+import { AppShowRoom } from "@/components/AppShowRoom";
 
-// export const routes = [
-//   {
-//     regex: /^\/404$/,
-//     default: '#/404',
-//     mount: async () => ({
-//       component: appDefault
-//     })
-//   },
-//   {
-//     regex: /^#\/$|^#\/home$/,
-//     start: '#/',
-//     mount: async () => ({
-//       component: appHome
-//     }),
-//     afterMount: (context) => {
-//       render(appHeader, context, (parentContext) => {
-//         render(appMenu, parentContext)
-//       })
-//       // console.log(context)
-//     }
-//   }
-// ]
+export const routes: TRoute[] = [
+	{
+		regex: /^\/404$/,
+		default: "#/404",
+		mount: ({ context }) => {
+			render(html`<${AppDefault} />`, context);
+		},
+	},
+	{
+		regex: /^#\/$|^#\/home$/,
+		start: "#/",
+		mount: ({ context }) => {
+			render(html`<${AppShowRoom} />`, context);
+		},
+	},
+];
