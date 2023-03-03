@@ -9,7 +9,7 @@ export const template: Ttemplate = ({ state, props }) => html`
       <div class="filter-wrap-ctx">
         <${AppContent}>
         <slot target="content">
-          <${AppToggle} data=${state.orderByOptions} />
+          <${AppToggle} label="alfabética" value=${1} />
         </slot>
         </>
       </div>

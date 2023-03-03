@@ -6,7 +6,7 @@ const AppIconType: Ttemplate = ({ props }) => {
 		return html`
       <span
       class="material-symbols-rounded"
-      style="font-size:${props.size}px;color:${props.color}"
+      style="font-size:${props.size}px;color:${props?.color}"
       >
         ${props.name}
       </span>
@@ -17,7 +17,7 @@ const AppIconType: Ttemplate = ({ props }) => {
 		return html`
       <span
       class="material-symbols-rounded"
-      style="font-size:${props.size}px"
+      style="font-size:${props.size}px;"
       >
         ${props.name}
       </span>
