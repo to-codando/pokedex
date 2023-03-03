@@ -2,13 +2,22 @@ import { css } from "iares";
 
 export const styles = () => css`
 
+  app-toggle {
+    min-width: 180px;
+  }
+
+    app-toggle,
+  .wrap-ctx {
+    width: 100%
+  }
+
   app-toggle,
   .wrap-ctx,
   .wrap-ctx > app-option {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    flex-wrap: wrap;
   }
 
   .wrap-ctx > app-option {
@@ -20,6 +29,7 @@ export const styles = () => css`
   .wrap-ctx > app-option > p {
     color: var(--green-moss);
     font-size: 1em;
+    font-weight:500;
     text-transform: capitalize;
   }
 
@@ -30,10 +40,13 @@ export const styles = () => css`
   }
 
   .wrap-ctx > button {
+    display: flex;
     background: var(--green-bright);
     border-radius: 4px;
     margin-right:6px;
     width: 48px;
     height: 48px;
+    justify-content: center;
+    align-items: center;
   }
 `;
