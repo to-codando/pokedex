@@ -1,12 +1,7 @@
 import { css } from "iares";
 
 export const styles = () => css`
-
-  app-toggle {
-    min-width: 180px;
-  }
-
-    app-toggle,
+  app-toggle,
   .wrap-ctx {
     width: 100%
   }
