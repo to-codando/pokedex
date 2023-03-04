@@ -29,7 +29,17 @@ export const styles = () => css`
     margin-top: 1em;
   }
 
-  .image-ctx > img {
-    width:90%
+  .tags-ctx {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(3, 1fr);
+    width:100%;
+  }
+
+  @media all and (max-width: 640px) {
+
+    .image-ctx > img {
+      width:100%;
+    }
   }
 `;

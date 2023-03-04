@@ -24,9 +24,11 @@ export const template: Ttemplate = ({ props }) => html`
 
     <${AppTitle} value="Zarama" size="2" height="2"/>
 
-    <${AppTag} value="Earth"/>
-    <${AppTag} value="water"/>
-    <${AppTag} value="wind"/>
+    <div class="tags-ctx">
+      <${AppTag} value="Earth"/>
+      <${AppTag} value="water"/>
+      <${AppTag} value="wind"/>
+    </div>
 
   </div>
 `;
