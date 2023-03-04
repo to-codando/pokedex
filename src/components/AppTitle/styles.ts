@@ -15,12 +15,25 @@ export const styles = () => css`
     align-items:center;
   }
 
+  .wrap-ctx.wrap-height-1 {
+    min-height: 2em;
+  }
+  .wrap-ctx.wrap-height-2 {
+    min-height: 3em;
+  }
+  .wrap-ctx.wrap-height-3 {
+    min-height: 4em;
+  }
+
+  .wrap-ctx > app-title-icon {
+    margin-right: 8px;
+  }
+
   .wrap-ctx > app-title-size > h1,
   .wrap-ctx > app-title-size > h2,
   .wrap-ctx > app-title-size > h3  {
     color: var(--green-moss);
     font-weight: 500;
-    padding-left: 8px
   }
 
   .wrap-ctx > app-title-size > h1 {

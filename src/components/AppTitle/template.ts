@@ -25,9 +25,16 @@ const AppTitleSize = ({ props }: Tparams) => {
 	return html``;
 };
 
+const AppTitleIcon = ({ props }: Tparams) => {
+	if (props.icon)
+		return html`<${AppIcon} name=${props.icon} color="#818B88" size=${24}/>`;
+
+	return html``;
+};
+
 export const template: Ttemplate = ({ props }) => html`
-  <div class="wrap-ctx">
-    <${AppIcon} name=${props.icon} color="#818B88" size=${24}/>
+  <div class="wrap-ctx wrap-height-${props.height | 1}">
+    <${AppTitleIcon} icon=${props.icon} />
     <${AppTitleSize} value=${props.value} size=${+props.size} />
   </div>
 `;
