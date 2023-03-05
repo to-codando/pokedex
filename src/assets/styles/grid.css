@@ -125,6 +125,10 @@
   justify-self: center;
 }
 
+.align-right {
+  justify-self: flex-end;
+}
+
 /*GRID*/
 
 .grid {

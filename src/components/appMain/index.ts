@@ -1,6 +1,7 @@
 import { html, css } from "iares";
 
 import { AppHeader } from "@/components/AppHeader";
+import { AppFooter } from "@/components/AppFooter";
 
 const styles = () => css`
   app-main,
@@ -17,6 +18,7 @@ const template = () => html`
   <div class="wrap-ctx">
     <${AppHeader}/>
     <router-view></router-view>
+    <${AppFooter}/>
   </div>
 `;
 
