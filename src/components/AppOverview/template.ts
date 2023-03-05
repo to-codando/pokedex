@@ -13,7 +13,7 @@ export const template: Ttemplate = ({ props }) => html`
     <${AppContent}>
       <slot target="content" ctx="app-overview">
         <div class="grid">
-          <div class="xxl-col-6">
+          <div class="xxl-col-6 xl-col-6 lg-col-12 sm-col-12 ">
             <${AppCard}>
               <slot target="content" ctx="app-overview">
                 <div class="wrap-image-ctx">
@@ -22,7 +22,7 @@ export const template: Ttemplate = ({ props }) => html`
               </slot>
             </>
           </div>
-          <div class="xxl-col-6">
+          <div class="xxl-col-6 xl-col-6 lg-col-12 sm-col-12">
             <${AppTitle} value="#556699 - Zaramana" height=${3} size=${1}/>
             <div class="wrap-tag-ctx">
               <${AppTag} value="ground"/>
@@ -42,18 +42,18 @@ export const template: Ttemplate = ({ props }) => html`
             <${AppTitle} icon="list_alt" value="Pokemons semelhantes" height=${2} size=${2}/>
           </div>
           <div class="grid">
-            <div class="xxl-col-3">
-              <${AppPokeCard} image="1"/>
-            </div>
-            <div class="xxl-col-3">
-              <${AppPokeCard} image="2"/>
-            </div>
-            <div class="xxl-col-3">
-              <${AppPokeCard} image="1"/>
-            </div>
-            <div class="xxl-col-3">
-              <${AppPokeCard} image="2"/>
-            </div>
+              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
+                <${AppPokeCard} image="1"/>
+              </div>
+              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
+                <${AppPokeCard} image="2"/>
+              </div>
+              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
+                <${AppPokeCard} image="1"/>
+              </div>
+              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
+                <${AppPokeCard} image="2"/>
+              </div>
           </div>
         </div>
       </slot>

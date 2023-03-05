@@ -37,4 +37,11 @@ export const styles = () => css`
     margin-bottom: 2em;
     border-bottom: 1px var(--green-moss) solid
   }
+
+  @media all and (max-width: 640px) {
+  .wrap-image-ctx {
+
+    height:430px
+  }
+  }
 `;
