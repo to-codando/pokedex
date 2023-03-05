@@ -4,8 +4,6 @@ import { Tprops } from "./types";
 import { template } from "./template";
 import { styles } from "./styles";
 
-import { createActions } from "./actions";
-
 export type Tcomponent = {
 	(params: Tparams): {
 		template: (params: Tparams) => TtemplateReturn;
@@ -14,13 +12,10 @@ export type Tcomponent = {
 	};
 };
 
-export const AppPokeCard: Tcomponent = ({ props }) => {
-	const actions = createActions();
-
+export const AppOverview: Tcomponent = ({ props }) => {
 	return {
 		template,
 		styles,
 		props,
-		actions,
 	};
 };

@@ -1,6 +1,10 @@
 import { css } from "iares";
 
 export const styles = () => css`
+  app-poke-card {
+    cursor: pointer;
+  }
+
   app-poke-card,
   .wrap-ctx,
   .content-ctx,

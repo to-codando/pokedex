@@ -6,8 +6,8 @@ import { AppIcon } from "@/components/AppIcon";
 import { AppTitle } from "@/components/AppTitle";
 import { AppTag } from "@/components/AppTag";
 
-export const template: Ttemplate = ({ props }) => html`
-  <div class="wrap-ctx">
+export const template: Ttemplate = ({ props, actions }) => html`
+  <div class="wrap-ctx" onClick=${actions.showOverview}>
     <${AppCard}>
       <slot target="content" ctx="app-poke-card">
         <div class="content-ctx">
