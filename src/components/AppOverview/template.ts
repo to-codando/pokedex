@@ -6,6 +6,7 @@ import { AppCard } from "@/components/AppCard";
 import { AppTitle } from "@/components/AppTitle";
 import { AppTag } from "@/components/AppTag";
 import { AppPokeCard } from "@/components/AppPokeCard";
+import { AppPowerBar } from "@/components/AppPowerBar";
 
 export const template: Ttemplate = ({ props }) => html`
   <div class="wrap-ctx">
@@ -29,6 +30,15 @@ export const template: Ttemplate = ({ props }) => html`
               <${AppTag} value="ground"/>
               <${AppTag} value="ground"/>
               <${AppTag} value="ground"/>
+            </div>
+            <div class="wrap-powerbar-ctx">
+              <${AppPowerBar} label="HP"                 value=${20} size=${30} />
+              <${AppPowerBar} label="Ataque"             value=${30} size=${40} />
+              <${AppPowerBar} label="Ataque especial"    value=${40} size=${30} />
+              <${AppPowerBar} label="Defesa"             value=${50} size=${60} />
+              <${AppPowerBar} label="Especial defensivo" value=${40} size=${80} />
+              <${AppPowerBar} label="Velocidade"         value=${30} size=${30} />
+              <${AppPowerBar} label="TOTAL"              value=${70} size=${70} />
             </div>
           </div>
         </div>
