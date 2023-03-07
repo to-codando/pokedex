@@ -23,14 +23,14 @@ export const styles = () => css`
     font-weight:600;
   }
 
-  .icon-ctx {
-    position:relative;
-    top: -7px
-  }
 
   .image-ctx {
     justify-content: center;
     margin-top: 1em;
+  }
+
+  .image-ctx > img {
+    width:100%
   }
 
   .tags-ctx {

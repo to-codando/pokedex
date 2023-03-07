@@ -23,6 +23,7 @@ const serverRunning = () => ({
 const runBuild = async () => {
 	const plugins = [
 		aliasPlugin({
+			"@/store": path.resolve(__dirname, "./src/store/index"),
 			"@/components": path.resolve(__dirname, "./src/components"),
 			"@/services": path.resolve(__dirname, "./src/services"),
 			"@/utils": path.resolve(__dirname, "./src/utils"),

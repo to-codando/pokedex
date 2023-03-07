@@ -3,6 +3,8 @@ import { html, css } from "iares";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 
+import { store, actions } from "@/store";
+
 const styles = () => css`
   app-main,
   .wrap-ctx {
@@ -23,8 +25,14 @@ const template = () => html`
 `;
 
 export const AppMain = () => {
+	const beforeMount = async () => {
+		const data = await actions.getData();
+		actions.setStorage(data);
+	};
+
 	return {
 		template,
 		styles,
+		hooks: { beforeMount },
 	};
 };

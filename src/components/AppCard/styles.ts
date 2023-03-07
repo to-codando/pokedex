@@ -5,8 +5,11 @@ export const styles = () => css`
   .wrap-ctx {
     display: flex;
     width: 100%;
-    padding:1em;
     border-radius:8px;
     background: var(--white);
+  }
+
+  .wrap-ctx {
+    padding:1em;
   }
 `;

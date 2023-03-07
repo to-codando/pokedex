@@ -5,7 +5,8 @@ import { AppContent } from "@/components/AppContent";
 import { AppFilter } from "@/components/AppFilter";
 import { AppPokeCard } from "@/components/AppPokeCard";
 
-export const template: Ttemplate = () => html`
+export const template: Ttemplate = ({ state }) => {
+	return html`
     <div class="wrap-ctx">
       <div class="filter-wrap-ctx">
         <${AppContent}>
@@ -19,30 +20,15 @@ export const template: Ttemplate = () => html`
           <slot target="content">
 
             <div class="grid">
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="1"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="2"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="1"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="2"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="2"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="1"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="2"/>
-              </div>
-              <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
-                <${AppPokeCard} image="1"/>
-              </div>
+            
+              ${state.pokemons.map(
+								(pokemon) => html`
+                  <div class="xxl-col-3 xl-col-3 lg-col-4 sm-col-6">
+                    <${AppPokeCard} data=${pokemon}/>
+                  </div>              
+                `,
+							)}
+
             </div>
 
           </slot>
@@ -50,3 +36,4 @@ export const template: Ttemplate = () => html`
       </div>
     </div>
 `;
+};
