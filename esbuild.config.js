@@ -45,10 +45,14 @@ const runBuild = async () => {
 
 	const configBuild = {
 		plugins,
+		supported: {
+			"dynamic-import": true,
+		},
 		platform: "node",
 		format: "esm",
 		bundle: true,
 		write: true,
+		watch: true,
 		entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
 		incremental: true,
 		outdir: "./dist",
@@ -56,7 +60,6 @@ const runBuild = async () => {
 		sourcemap: isDevMode,
 		minify: !isDevMode,
 		target: isDevMode ? ["esnext"] : ["es2018"],
-
 		loader: {
 			".png": "dataurl",
 			".jpg": "file",

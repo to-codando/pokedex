@@ -8,11 +8,21 @@
       "@/utils/*": ["utils/*"],
       "@/services/*": ["services/*"],
       "@/assets/*": ["assets/*"],
+      "@/tests/*": ["tests/*"],
     },
     "strict":true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "target": "es2018",
+    "module": "esnext",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "inlineSources": true,
   }
+  
 }

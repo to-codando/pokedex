@@ -12,21 +12,21 @@ export const template: Ttemplate = ({ props, actions }) => {
     <${AppCard}>
       <slot target="content" ctx="app-poke-card">
         <div class="content-ctx">
-          <p class="code-ctx">#${props.data.national_number}</p>
+          <p class="code-ctx">#${props?.data?.national_number}</p>
           <div class="icon-ctx">
             <${AppIcon} name="favorite" color="#818b88" size="24"/>
           </div>
           <div class="image-ctx">
-            <img src="${actions.setImage(props.data.sprites.normal)}"/>
+            <img src="${actions.setImage(props?.data?.sprites?.normal || null)}"/>
           </div>
         </div>
       </slot>
     </>
 
-    <${AppTitle} value=${props.data.name} size="2" height="2"/>
+    <${AppTitle} value=${props?.data?.name} size="2" height="2"/>
 
     <div class="tags-ctx">
-      ${props.data.type.map((type) => html`<${AppTag} value=${type}/>`)}
+      ${props?.data?.type.map((type) => html`<${AppTag} value=${type}/>`)}
     </div>
 
   </div>

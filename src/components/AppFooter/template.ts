@@ -1,9 +1,8 @@
 import { html } from "iares";
-import { Ttemplate, TcopyParams } from './types';
+import { Ttemplate, TcopyParams } from "./types";
 
-import { AppContent } from '@/components/AppContent'
-import { AppIcon } from '@/components/AppIcon'
-
+import { AppContent } from "@/components/AppContent";
+import { AppIcon } from "@/components/AppIcon";
 
 export const template: Ttemplate = ({ props }) => html`
   <div class="wrap-ctx">

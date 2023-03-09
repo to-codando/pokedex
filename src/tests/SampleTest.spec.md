@@ -1,12 +1,14 @@
+```js
+
 import { expect } from "@esm-bundle/chai";
 
-import { AppIcon } from "./";
-import { template } from "./template";
-import { styles } from "./styles";
+import { AppSample } from "../components/ZZZZZZZZZ";
+import { template } from "../components/ZZZZZZZZZ/template";
+import { styles } from "../components/ZZZZZZZZZ/styles";
 
-describe("AppIcon", () => {
+describe("AppSample", () => {
 	const props = { name: "favorite", color: "#666" };
-	const component = AppIcon({ props });
+	const component = AppSample({ props });
 	const template = component.template({ props });
 
 	it("Should have property object", () => {
@@ -39,3 +41,5 @@ describe("AppIcon", () => {
 		expect(component.styles()).is.a("string");
 	});
 });
+
+```

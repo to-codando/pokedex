@@ -8,7 +8,7 @@ const showOverview = () => {
 const setImage: TactionSetImage = (imageUrl) => {
 	const imageFallbackUrl = "/assets/images/404.png";
 
-	const isValidImage = !!imageUrl.match(/\w+\.(jpg|gif|png)$/gi);
+	const isValidImage = imageUrl && !!imageUrl.match(/\w+\.(jpg|gif|png)$/gi);
 
 	return isValidImage ? imageUrl : imageFallbackUrl;
 };

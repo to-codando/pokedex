@@ -2,7 +2,7 @@ import { HTMType } from "iares";
 import { Tpokemon } from "store/types";
 
 export type TactionSetImage = {
-	(imageUrl: string): string;
+	(imageUrl: string | null): string;
 };
 
 export type Tactions = {
@@ -13,7 +13,7 @@ export type TcreateActions = {
 	(): Tactions;
 };
 
-export type Tprops = { data: Tpokemon };
+export type Tprops = { data: Tpokemon | null };
 export type Tparams = { props: Tprops; actions: Tactions };
 export type TtemplateReturn =
 	| ({ props: Tprops } & HTMType<void, void, Tparams>)
