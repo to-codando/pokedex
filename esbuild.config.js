@@ -1,7 +1,8 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import { build } from "esbuild";
+import { context } from "esbuild";
+import Watcher from "watcher";
 
 import copy from "esbuild-copy-files-plugin";
 import aliasPlugin from "esbuild-plugin-path-alias";
@@ -39,36 +40,45 @@ const runBuild = async () => {
 			target: "./dist",
 			copyWithFolder: true, // will copy "images" folder with all files inside
 		}),
-		devServer({ public: "./dist", port: PORT }),
-		serverRunning(),
+		// devServer({ public: "./dist", port: PORT }),
+		// serverRunning(),
 	];
 
-  const configBuild = {
-			plugins,
-      supported: {
-			  "dynamic-import": true,
-		  },
-			platform: "node",
-			format: "esm",
-			bundle: true,
-			write: true,
-      entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
-			tsconfig: "./tsconfig.json",
-      outdir: "./dist",
-      treeShaking: !isDevMode,
-      sourcemap: isDevMode,
-      minify: !isDevMode,
-      target: isDevMode ? ["esnext"] : ["es2018"],
-			loader: {
-				".png": "dataurl",
-				".jpg": "file",
-				".jpeg": "file",
-				".svg": "text",
-			},
-		};
+	const configBuild = {
+		plugins,
+		supported: {
+			"dynamic-import": true,
+		},
+		platform: "node",
+		format: "esm",
+		bundle: true,
+		write: true,
+		entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
+		tsconfig: "./tsconfig.json",
+		outdir: "./dist",
+		treeShaking: !isDevMode,
+		sourcemap: isDevMode,
+		minify: !isDevMode,
+		target: isDevMode ? ["esnext"] : ["es2018"],
+		loader: {
+			".png": "dataurl",
+			".jpg": "file",
+			".jpeg": "file",
+			".svg": "text",
+		},
+	};
 
 	try {
-		await build(configBuild);
+		const ctx = await context(configBuild);
+
+		const { port } = await ctx.serve({
+			port: 8080,
+			servedir: "./dist",
+		});
+
+		ctx.watch();
+
+		console.log(`server running in localhost:${port}`);
 	} catch (errors) {
 		console.log(errors);
 		process.exit(0);

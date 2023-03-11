@@ -8,5 +8,8 @@ export const appHost = createApp({
 	onMount(context, props) {
 		render(html`<${AppMain} />`);
 		router({ routes, context }).init();
+		new EventSource("/esbuild").addEventListener("change", () =>
+			location.reload(),
+		);
 	},
 });
