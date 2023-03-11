@@ -15,7 +15,7 @@
     "prod": "pnpm run build",
     "api": "json-server --watch api/db.json",
     "test": "node ./esbuild.config.test.js",
-    "posttest": "web-test-runner ./dist/tests/**/*.js",
+    "posttest": "web-test-runner --config",
     "coverage": "node ./esbuild.config.test.js",
     "postcoverage": "nyc --reporter=html --reporter=text mocha ./dist/tests"
   },
