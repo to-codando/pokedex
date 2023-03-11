@@ -43,30 +43,29 @@ const runBuild = async () => {
 		serverRunning(),
 	];
 
-	const configBuild = {
-		plugins,
-		supported: {
-			"dynamic-import": true,
-		},
-		platform: "node",
-		format: "esm",
-		bundle: true,
-		write: true,
-		watch: true,
-		entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
-		incremental: true,
-		outdir: "./dist",
-		treeShaking: !isDevMode,
-		sourcemap: isDevMode,
-		minify: !isDevMode,
-		target: isDevMode ? ["esnext"] : ["es2018"],
-		loader: {
-			".png": "dataurl",
-			".jpg": "file",
-			".jpeg": "file",
-			".svg": "text",
-		},
-	};
+  const configBuild = {
+			plugins,
+      supported: {
+			  "dynamic-import": true,
+		  },
+			platform: "node",
+			format: "esm",
+			bundle: true,
+			write: true,
+      entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
+			tsconfig: "./tsconfig.json",
+      outdir: "./dist",
+      treeShaking: !isDevMode,
+      sourcemap: isDevMode,
+      minify: !isDevMode,
+      target: isDevMode ? ["esnext"] : ["es2018"],
+			loader: {
+				".png": "dataurl",
+				".jpg": "file",
+				".jpeg": "file",
+				".svg": "text",
+			},
+		};
 
 	try {
 		await build(configBuild);

@@ -1,8 +1,11 @@
 import * as fs from "fs";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { build } from "esbuild";
+import {build, context} from "esbuild";
 import aliasPlugin from "esbuild-plugin-path-alias";
+import Watcher from "watcher";
+import { exec } from "child_process";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,14 +16,17 @@ const getTestFiles = (directory, excludeRegex) => {
 	const fullPath = path.join(__dirname, directory);
 	const files = fs.readdirSync(fullPath);
 
+
+	if (!excludeRegex) return files.map((file) => `${directory}${file}`);
+
 	return files
 		.filter((file) => !excludeRegex.test(file))
 		.map((file) => `${directory}${file}`);
 };
 
 const runBuild = async () => {
-	const testFiles = getTestFiles("./src/tests/", /\.spec\.md$/);
-	const components = getTestFiles("./src/components/", /\.spec\.md$/);
+	const testFiles = getTestFiles("./tests/", /\.spec\.md$/);
+	const components = getTestFiles("./src/components/");
 
 	const configBuild = {
 		plugins: [
@@ -32,18 +38,13 @@ const runBuild = async () => {
 				"@/assets": path.resolve(__dirname, "./src/assets"),
 			}),
 		],
-
-		supported: {
-			"dynamic-import": true,
-		},
 		platform: "node",
 		format: "esm",
 		bundle: true,
 		write: true,
-		watch: true,
 		entryPoints: [...testFiles, ...components],
-		incremental: true,
-		outdir: "./dist/tests",
+    tsconfig:'./tsconfig.spect.json',
+		outdir: "./dist",
 		treeShaking: false,
 		sourcemap: true,
 		minify: false,
@@ -56,14 +57,25 @@ const runBuild = async () => {
 		},
 	};
 
-	try {
-		await build(configBuild);
-	} catch (errors) {
-		console.log(errors);
-		process.exit(0);
-	} finally {
-		process.exit(0);
-	}
+	let watcher = new Watcher(["./src/**/*.ts", "./tests"]);
+	let buildProcess = null;
+
+  watcher.on('change', async (data) => {
+    const ctx = await context(configBuild)
+    ctx.rebuild()
+    onSigintStop(ctx, watcher);
+  })
+
+  const onSigintStop = (ctx, watcher) => {
+    process.on("SIGINT", () => {
+      console.log("SIGINT received, shutting down...");
+      ctx.dispose();
+      watcher.close();
+      process.exit(0)
+    });
+	};
+
+
 };
 
-runBuild();
+exec('node runBuild()')

@@ -1,0 +1,35 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "branches": 0,
+  "lines": 0,
+  "functions": 0,
+  "statements": 0,
+  "check-coverage": true,
+  "watermarks": {
+    "lines": [
+      80,
+      95
+    ],
+    "functions": [
+      80,
+      95
+    ],
+    "branches": [
+      80,
+      95
+    ],
+    "statements": [
+      80,
+      95
+    ]
+  },
+  "exclude": [
+    ".ignore",
+    "coverage"
+  ],
+  "report-dir": "./coverage/",
+  "cache": false,
+  "source-map": true,
+  "produce-source-map": true
+}
