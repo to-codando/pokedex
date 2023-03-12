@@ -1,28 +1,20 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 
-import { context } from "esbuild";
-import Watcher from "watcher";
+import * as esbuild from "esbuild";
 
 import copy from "esbuild-copy-files-plugin";
 import aliasPlugin from "esbuild-plugin-path-alias";
-import devServer from "esbuild-plugin-dev-server";
+import { buildEnvironment } from "./build.environment.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const PORT = 3000;
 const isDevMode = process.env.NODE_ENV === "development";
-
-const serverRunning = () => ({
-	name: "server",
-	async setup(options = {}) {
-		console.log(`Server running in http://localhost:${PORT}`);
-	},
-});
 
 const runBuild = async () => {
 	const plugins = [
+		buildEnvironment({ environment: "production" }),
 		aliasPlugin({
 			"@/store": path.resolve(__dirname, "./src/store/index"),
 			"@/components": path.resolve(__dirname, "./src/components"),
@@ -33,29 +25,28 @@ const runBuild = async () => {
 		copy({
 			source: ["./src/index.html"],
 			target: "./dist",
-			copyWithFolder: false, // will copy "images" folder with all files inside
+			copyWithFolder: false,
 		}),
 		copy({
 			source: ["./src/assets"],
 			target: "./dist",
-			copyWithFolder: true, // will copy "images" folder with all files inside
+			copyWithFolder: true,
 		}),
-		// devServer({ public: "./dist", port: PORT }),
-		// serverRunning(),
 	];
 
-	const configBuild = {
+	esbuild.build({
 		plugins,
 		supported: {
 			"dynamic-import": true,
 		},
-		platform: "node",
+		platform: "browser",
 		format: "esm",
 		bundle: true,
 		write: true,
 		entryPoints: ["src/main.ts", "src/assets/styles/main.css"],
 		tsconfig: "./tsconfig.json",
 		outdir: "./dist",
+		keepNames: true,
 		treeShaking: !isDevMode,
 		sourcemap: isDevMode,
 		minify: !isDevMode,
@@ -66,23 +57,7 @@ const runBuild = async () => {
 			".jpeg": "file",
 			".svg": "text",
 		},
-	};
-
-	try {
-		const ctx = await context(configBuild);
-
-		const { port } = await ctx.serve({
-			port: 8080,
-			servedir: "./dist",
-		});
-
-		ctx.watch();
-
-		console.log(`server running in localhost:${port}`);
-	} catch (errors) {
-		console.log(errors);
-		process.exit(0);
-	}
+	});
 };
 
 runBuild();

@@ -1,15 +1,18 @@
 import { createApp, html, render, router } from "iares";
+import { environment } from "env";
 
 import { routes } from "./routes";
-
 import { AppMain } from "@/components/appMain";
 
 export const appHost = createApp({
 	onMount(context, props) {
 		render(html`<${AppMain} />`);
 		router({ routes, context }).init();
-		new EventSource("/esbuild").addEventListener("change", () =>
-			location.reload(),
-		);
 	},
 });
+
+if (environment === "development") {
+	new EventSource("esbuild").addEventListener("change", () => {
+		window.location.reload();
+	});
+}

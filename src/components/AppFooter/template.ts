@@ -23,7 +23,7 @@ export const template: Ttemplate = ({ props }) => html`
             </ul>
           </div>
           <div class="xxl-col-3 xl-col-3 lg-col-3 sm-col-6 align-brand-ctx">
-            <img src="/assets/images/logo-citrux.png" />
+            <img src="./assets/images/logo-citrux.png" />
           </div>
         </div>
       </slot>

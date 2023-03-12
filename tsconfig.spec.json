@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "lib": [ "ES2017", "DOM" ],
+    "lib": [ "ESNext", "DOM" ],
     "paths": {
       "@/store": ["store/index.ts"],
       "@/components/*": ["components/*"],
@@ -16,7 +16,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
-    "target": "es2018",
+    "target": "esnext",
     "module": "esnext",
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,

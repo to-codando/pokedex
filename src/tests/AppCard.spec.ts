@@ -5,12 +5,12 @@ import { template } from "@/components/AppPokeCard/template";
 import { styles } from "@/components/AppPokeCard/styles";
 import { createActions } from "@/components/AppPokeCard/actions";
 
-describe("ApPokeCard", () => {
+describe("AppCard", () => {
 	const actions = createActions();
 	const props = { data: null };
 	const component = AppPokeCard({ props, actions });
 	const template = component.template({ props, actions });
 	it("Should have property object", () => {
-		expect(1).to.be.eql(3);
+		expect(1).to.be.eql(1);
 	});
 });

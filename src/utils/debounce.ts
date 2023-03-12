@@ -1,5 +1,5 @@
 export type Thandler = {
-	(args: any[]): void;
+	(args: Event[]): void;
 };
 
 export type Tdebounc = {

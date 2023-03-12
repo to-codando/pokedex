@@ -26,9 +26,21 @@
   },
   "exclude": [
     ".ignore",
-    "coverage"
+    "./tests",
+    "./src/components/zample",
+    "coverage",
+    "./api",
+    "../bem-perfeito",
+    "**/**/types.ts",
+    "build.development.js",
+    "build.production.js",
+    "build.environment.js",
+    "web-test-runner.config.js",
+    "**/api",
+    "decs.d.ts"
   ],
-  "report-dir": "./coverage/",
+  "include": [],
+  "report-dir": "./coverage",
   "cache": false,
   "source-map": true,
   "produce-source-map": true
