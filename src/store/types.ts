@@ -13,7 +13,7 @@ export type Tpokemon = {
 	evolution: boolean | null;
 	sprites: TpokemonSprites;
 	name: string;
-	type: TpokemonTypes[];
+	type: string[];
 	total: number;
 	hp: number;
 	attack: number;

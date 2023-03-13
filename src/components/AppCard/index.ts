@@ -1,4 +1,4 @@
-import { Tparams, TtemplateReturn } from "./types.js";
+import { Tparams, TtemplateReturn } from "./types";
 import { Tprops } from "./types";
 
 import { template } from "./template";

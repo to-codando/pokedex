@@ -1,11 +1,10 @@
 {
   "extends": "@istanbuljs/nyc-config-typescript",
-  "all": true,
+  "check-coverage": true,
   "branches": 0,
   "lines": 0,
   "functions": 0,
   "statements": 0,
-  "check-coverage": true,
   "watermarks": {
     "lines": [
       80,
@@ -24,22 +23,6 @@
       95
     ]
   },
-  "exclude": [
-    ".ignore",
-    "./tests",
-    "./src/components/zample",
-    "coverage",
-    "./api",
-    "../bem-perfeito",
-    "**/**/types.ts",
-    "build.development.js",
-    "build.production.js",
-    "build.environment.js",
-    "web-test-runner.config.js",
-    "**/api",
-    "decs.d.ts"
-  ],
-  "include": [],
   "report-dir": "./coverage",
   "cache": false,
   "source-map": true,

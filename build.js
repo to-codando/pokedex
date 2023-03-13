@@ -4,7 +4,7 @@ import Watcher from "watcher";
 import { glob } from "glob";
 import * as fs from "fs";
 
-import { context } from "esbuild";
+import * as esbuild from "esbuild";
 import copy from "esbuild-copy-files-plugin";
 import aliasPlugin from "esbuild-plugin-path-alias";
 import { buildEnvironment } from "./build.environment.js";
@@ -80,18 +80,11 @@ const runBuild = async () => {
 	};
 
 	try {
-		const ctx = await context(configBuild);
-
-		const { port } = await ctx.serve({
-			port: 8080,
-			servedir: "./dist",
-		});
-
-		ctx.watch();
-		console.log(`server running in localhost:${port}`);
+		await esbuild.build(configBuild);
+		console.log("Finished build update.");
+		process.exit(0);
 	} catch (errors) {
 		console.log(errors);
-		process.exit(0);
 	}
 
 	// let watcher = new Watcher(["./src/**/*.ts", "./tests"]);

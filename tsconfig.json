@@ -9,6 +9,7 @@
       "@/services/*": ["services/*"],
       "@/assets/*": ["assets/*"],
       "@/tests/*": ["tests/*"],
+      "@/mock/*": ["mock/*"],
     },
     "strict":true,
     "esModuleInterop": false,
