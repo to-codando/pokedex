@@ -1,4 +1,4 @@
-import path, { dirname } from "path";
+import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import Watcher from "watcher";
 import { glob } from "glob";
@@ -32,12 +32,12 @@ const runBuild = async () => {
 		plugins: [
 			buildEnvironment({ environment: "development" }),
 			aliasPlugin({
-				"@/store": path.resolve(__dirname, "./src/store/index"),
-				"@/components": path.resolve(__dirname, "./src/components/"),
-				"@/services": path.resolve(__dirname, "./src/services"),
-				"@/utils": path.resolve(__dirname, "./src/utils"),
-				"@/assets": path.resolve(__dirname, "./src/assets"),
-				"@/mock": path.resolve(__dirname, "./src/mock/"),
+				"@/store": resolve(__dirname, "./src/store/index"),
+				"@/components": resolve(__dirname, "./src/components/"),
+				"@/services": resolve(__dirname, "./src/services"),
+				"@/utils": resolve(__dirname, "./src/utils"),
+				"@/assets": resolve(__dirname, "./src/assets"),
+				"@/mock": resolve(__dirname, "./src/mock/"),
 			}),
 			copy({
 				source: ["./src/index.html"],
@@ -50,10 +50,8 @@ const runBuild = async () => {
 				copyWithFolder: true, // will copy "images" folder with all files inside
 			}),
 		],
-		supported: {
-			"dynamic-import": true,
-		},
-		platform: "browser",
+
+		platform: "node",
 		format: "esm",
 		bundle: true,
 		write: true,
@@ -66,6 +64,7 @@ const runBuild = async () => {
 		],
 		tsconfig: "./tsconfig.spec.json",
 		outdir: "./dist",
+		external: ["http", "canvas", "global-jsdom", "global-jsdom/register"],
 		treeShaking: false,
 		sourcemap: true,
 		minify: false,

@@ -10,9 +10,9 @@
   "scripts": {
     "clear": "shx rm -rf ./dist ./coverage",
     "lint": "rome format ./src --write && rome check ./src --verbose",
-    "test": "web-test-runner ./dist/tests/**/*.js --watch --verbose",
+    "test": "pnpm coverage:build && mocha ./dist/**/*.js --watch",
     "coverage:build": "pnpm clear && node ./build.js",
-    "coverage": " pnpm coverage:build && c8 --reporter=html --reporter=text mocha ./dist/tests",
+    "coverage": "pnpm coverage:build && c8 --reporter=html --reporter=text mocha ./dist/tests",
     "start:dev": "node ./build.development.js && pnpm run lint",
     "dev": "cross-env NODE_ENV=development && pnpm start:dev",
     "build": "cross-env NODE_ENV=production && pnpm clear && node ./build.production.js && pnpm run start:prod",
@@ -21,22 +21,22 @@
   },
   "aliases": {
     "@/store": [
-      "dist/store/index.ts"
+      "./dist/store/index.ts"
     ],
     "@/components/*": [
-      "dist/components"
+      "./dist/components"
     ],
     "@/utils/*": [
-      "dist/utils"
+      "./dist/utils"
     ],
     "@/services/*": [
-      "dist/services"
+      "./dist/services"
     ],
     "@/assets/*": [
-      "dist/assets"
+      "./dist/assets"
     ],
     "@/mock/*": [
-      "dist/mock"
+      "./dist/mock"
     ]
   },
   "nyc": {
@@ -51,35 +51,46 @@
     "@swc/core": "^1.3.39",
     "@types/chai": "^4.3.4",
     "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.0",
+    "@types/sinon": "^10.0.13",
     "@types/whatwg-fetch": "^0.0.33",
     "@web/dev-server": "^0.1.35",
     "@web/dev-server-esbuild": "^0.3.3",
+    "@web/dev-server-import-maps": "^0.0.8",
     "@web/test-runner": "^0.15.1",
     "@web/test-runner-mocha": "^0.7.5",
     "c8": "^7.13.0",
+    "chai": "^4.3.7",
+    "chromedriver": "^111.0.0",
     "cross-env": "^7.0.3",
+    "dominio": "^1.1.1",
     "esbuild": "^0.17.11",
     "esbuild-copy-files-plugin": "^1.1.0",
     "esbuild-plugin-dev-server": "^1.1.3",
     "esbuild-plugin-path-alias": "^1.0.7",
     "esbuild-runner": "^2.2.2",
     "esbuild-serve": "^1.0.1",
+    "esm": "^3.2.25",
     "esm-module-alias": "^2.0.3",
     "forever": "^4.0.3",
     "glob": "^9.2.1",
+    "global-jsdom": "^8.7.0",
     "http-server": "^14.1.1",
     "install-peerdeps": "^3.0.3",
     "json-server": "^0.17.1",
     "mocha": "^10.2.0",
+    "mock-browser": "^0.92.14",
     "module-alias": "^2.2.2",
     "nyc": "^15.1.0",
+    "puppeteer": "^19.7.4",
     "rome": "^11.0.0",
     "shx": "^0.3.4",
+    "sinon": "^15.0.2",
+    "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
     "watcher": "^2.2.2"
   },
   "dependencies": {
-    "@types/node": "^18.15.0",
     "htm": "^3.1.1",
     "iares": "workspace:*"
   }

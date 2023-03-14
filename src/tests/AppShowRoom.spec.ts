@@ -1,60 +1,85 @@
+import { default as globalJsdom } from "global-jsdom";
+import * as sinon from "sinon";
 import { expect } from "@esm-bundle/chai";
+import { createState, html, render } from "iares";
 
 import { AppShowRoom } from "@/components/AppShowRoom";
 import { template } from "@/components/AppShowRoom/template";
 import { styles } from "@/components/AppShowRoom/styles";
-import { store, actions } from "@/store";
-
+import { TcomponentFactory } from "@/components/AppShowRoom/types";
+import { createHooks } from "@/components/AppShowRoom/hooks";
+import { TpokemonState, actions } from "@/store";
 import { filledPokemonState } from "@/mock/AppShowRoom/pockemons";
 
-describe("AppShowRoom", async () => {
-	const emptyState = { pokemons: [] };
+describe("AppShowRoom component", () => {
+	let component: TcomponentFactory;
+	let store: ReturnType<typeof createState<TpokemonState>>;
+	let hooks: ReturnType<typeof createHooks>;
+	let getPokemonsStub: sinon.SinonStub;
+	let cleanup: globalJsdom;
 
-	const params = { state: emptyState };
-	const component = AppShowRoom();
-	component.template({ state: emptyState });
-
-	it("Should create AppShowRoom component", () => {
-		expect(AppShowRoom()).to.be.a("object");
-
-		expect(AppShowRoom())
-			.to.be.a("object")
-			.and.have.keys(["store", "template", "styles", "hooks"]);
+	before(() => {
+		cleanup = globalJsdom();
 	});
 
-	it("Should create component state", () => {
-		expect(component.store)
-			.to.be.a("object")
-			.and.have.keys(["state", "setState", "watchState"]);
+	after(() => {
+		cleanup();
 	});
 
-	it("should a blank pokemon list be kept in the state of the component", () => {
-		expect(component.store.state)
-			.to.be.a("object")
-			.and.property("pokemons")
-			.to.be.a("array");
+	beforeEach(async () => {
+		store = createState<TpokemonState>({ pokemons: [] });
+		hooks = createHooks(store, actions);
+		component = () => ({ store, template, styles, hooks });
 
-		expect(component.store.state.pokemons)
-			.to.be.a("array")
-			.to.have.deep.members([]);
+		getPokemonsStub = sinon
+			.stub(actions, "getPokemons")
+			.resolves(filledPokemonState);
 	});
 
-	it("should a filled pokemon list be kept in the state of the component", () => {
-		const component = AppShowRoom();
-		component.store.setState(filledPokemonState);
-		expect(component.store.state)
-			.to.be.a("object")
-			.and.property("pokemons")
-			.to.be.a("array");
-
-		expect(component.store.state.pokemons)
-			.to.be.a("array")
-			.to.have.deep.members(filledPokemonState.pokemons);
+	afterEach(async () => {
+		getPokemonsStub.restore();
 	});
 
-	it("Should template function return valid template object", () => {
-		expect(template({ state: store.state }))
-			.to.be.a("object")
-			.and.have.all.keys(["type", "props", "children"]);
+	it("should initialize with an empty array of pokemons", () => {
+		expect(store.state.pokemons).to.deep.equal([]);
+	});
+
+	it("should update the state with a list of pokemons on mount", async () => {
+		hooks.beforeMount();
+		await new Promise((resolve) => setTimeout(resolve, 0)); // Wait for the async operation to complete
+		expect(getPokemonsStub.calledOnce).to.be.true;
+		expect(getPokemonsStub.calledWith()).to.be.true;
+		expect(store.state.pokemons).to.deep.equal(filledPokemonState.pokemons);
+	});
+
+	it("should return an object with the correct properties", () => {
+		const { store, template, styles, hooks } = component();
+		expect(component()).to.have.a.property("store").that.deep.equals(store);
+		expect(component()).to.have.a.property("template").that.equals(template);
+		expect(component()).to.have.a.property("styles").that.equals(styles);
+		expect(component()).to.have.a.property("hooks").that.deep.equals(hooks);
+		expect(hooks).to.have.a.property("beforeMount").that.is.a("function");
+	});
+
+	it("should return an template object with the correct properties", () => {
+		const { store } = component();
+		const view = template({ state: store.state });
+		expect(view).to.be.a("object");
+		expect(view).and.have.all.keys("type", "children", "props");
+	});
+
+	it("should render AppPokeCard components", async () => {
+		const AppShowRoom = () => ({
+			...component(),
+			template: () => template({ state: filledPokemonState }),
+		});
+		console.log("document", document.body);
+
+		render(html`<${AppShowRoom} />`, document.body);
+
+		const AppPokeCardElements = Array.from(
+			document.body.querySelectorAll("app-poke-card"),
+		);
+		expect(AppPokeCardElements).to.have.lengthOf(1);
 	});
 });

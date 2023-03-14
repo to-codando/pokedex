@@ -5,8 +5,7 @@ import { AppContent } from "@/components/AppContent";
 import { AppFilter } from "@/components/AppFilter";
 import { AppPokeCard } from "@/components/AppPokeCard";
 
-export const template: Ttemplate = ({ state }) => {
-	return html`
+export const template: Ttemplate = ({ state }) => html`
     <div class="wrap-ctx">
       <div class="filter-wrap-ctx">
         <${AppContent}>
@@ -36,4 +35,3 @@ export const template: Ttemplate = ({ state }) => {
       </div>
     </div>
 `;
-};

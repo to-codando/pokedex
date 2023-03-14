@@ -1,5 +1,5 @@
 import { TState, HTMType } from "iares";
-import { TpokemonState } from "store/types";
+import { Tactions, TpokemonState } from "store/types";
 
 export type Tprops = { name: string; color?: string; handle?: () => void };
 export type Tparams = { state: TpokemonState };
@@ -16,11 +16,17 @@ export type Thooks = {
 	beforeMount: Thook;
 };
 
+export type ThookCreator = {
+	(store: TState<TpokemonState>, actions: Tactions): Thooks;
+};
+
 export type Tcomponent = {
-	(): {
-		template: Ttemplate;
-		styles: () => string;
-		hooks: Thooks;
-		store: TState<TpokemonState>;
-	};
+	template: Ttemplate;
+	styles: () => string;
+	hooks: Thooks;
+	store: TState<TpokemonState>;
+};
+
+export type TcomponentFactory = {
+	(): Tcomponent;
 };

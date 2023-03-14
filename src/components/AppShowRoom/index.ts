@@ -1,25 +1,21 @@
-import { createState, TState } from "iares";
-
-import { Tcomponent } from "./types";
+import { createState } from "iares";
 
 import { template } from "./template";
 import { styles } from "./styles";
 
+import { TcomponentFactory } from "./types";
+import { createHooks } from "./hooks";
+
 import { actions, TpokemonState } from "@/store";
 
-export const AppShowRoom: Tcomponent = () => {
-	const localStore = createState<TpokemonState>({ pokemons: [] });
-
-	const beforeMount = async () => {
-		const { pokemons } = await actions.getPokemons(0, 59);
-		const state = localStore.state;
-		localStore.setState({ ...state, pokemons });
-	};
+export const AppShowRoom: TcomponentFactory = () => {
+	const store = createState<TpokemonState>({ pokemons: [] });
+	const hooks = createHooks(store, actions);
 
 	return {
-		store: localStore,
+		store,
 		template,
 		styles,
-		hooks: { beforeMount },
+		hooks,
 	};
 };

@@ -66,6 +66,7 @@ const runBuild = async () => {
 		],
 		tsconfig: "./tsconfig.spec.json",
 		outdir: "./dist",
+		external: ["http", "canvas", "global-jsdom", "global-jsdom/register"],
 		treeShaking: false,
 		sourcemap: true,
 		minify: false,

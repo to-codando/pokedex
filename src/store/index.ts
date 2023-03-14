@@ -3,6 +3,7 @@ export {
 	TpokemonState,
 	TpokemonSprites,
 	Tpokemon,
+	Tactions,
 } from "./types";
 
 import { createState, TState } from "iares";
