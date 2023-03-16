@@ -9,17 +9,19 @@
   "type": "module",
   "scripts": {
     "clear": "shx rm -rf ./dist ./coverage",
+    "clear:coverage": "shx rm -rf ./coverage",
+    "clear:dist": "shx rm -rf ./dist",
     "lint": "rome format ./src --write && rome check ./src --verbose",
-    "test": "pnpm coverage:build && mocha ./dist/**/*.js",
-    "coverage:build": "pnpm clear && node ./build.js",
-    "coverage": "pnpm coverage:build && c8 --reporter=html --reporter=text mocha ./dist/tests",
-    "start:dev": "node ./build.development.js && pnpm run lint",
-    "dev": "cross-env NODE_ENV=development && pnpm start:dev",
     "build": "cross-env NODE_ENV=production && pnpm clear && node ./build.production.js && pnpm run start:prod",
+    "dev": "cross-env NODE_ENV=development && pnpm start:dev",
+    "test": "pnpm run clear:dist && node ./build.spec.coverage.js && mocha ./dist/**/*.js",
+    "test:watch": "pnpm run test && pnpm run test:watcher",
+    "test:coverage": "pnpm run coverage:build && c8 --reporter=html --reporter=text mocha ./dist/tests",
+    "coverage:build": "pnpm clear:coverage && node ./build.spec.coverage.js",
+    "start:dev": "node ./build.development.js && pnpm run lint",
     "start:prod": "cd ./dist && npx http-server",
     "api:mock": "json-server --watch api/db.json",
-    "test:watcher": "run-when-changed --watch './dist/tests/**/*.spec.js' --exec 'mocha ./dist/tests %s'",
-    "test:watch": "pnpm run test && pnpm run test:watcher"
+    "test:watcher": "run-when-changed --watch './dist/tests/**/*.spec.js' --exec 'mocha ./dist/tests %s'"
   },
   "aliases": {
     "@/store": [
