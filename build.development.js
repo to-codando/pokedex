@@ -1,8 +1,6 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import Watcher from "watcher";
 import { glob } from "glob";
-import * as fs from "fs";
 
 import { context } from "esbuild";
 import copy from "esbuild-copy-files-plugin";
