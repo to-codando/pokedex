@@ -1,0 +1,40 @@
+{
+  "check-coverage": true,
+  "branches": 0,
+  "lines": 0,
+  "functions": 0,
+  "statements": 0,
+  "watermarks": {
+    "lines": [
+      50,
+      85
+    ],
+    "functions": [
+      50,
+      85
+    ],
+    "branches": [
+      50,
+      85
+    ],
+    "statements": [
+      50,
+      85
+    ]
+  },
+  "report-dir": "./coverage",
+  "cache": false,
+  "source-map": true,
+  "produce-source-map": true,
+  "all": true,
+  "src": [
+    "../bem-perfeito/"
+  ],
+  "exclude-after-remap": true,
+  "include": [
+    "src/components/"
+  ],
+  "exclude": [
+    "**/types.ts"
+  ]
+}
