@@ -23,6 +23,11 @@ export type Tpokemon = {
 	speed: number;
 };
 
+export type TglobalStore = {
+	pokemons?: Tpokemon[];
+	search?: string;
+};
+
 export type TpokemonState = {
 	pokemons: Tpokemon[];
 };
@@ -39,10 +44,15 @@ export type TgetPokemons = {
 	(startingPosition: number, endPosition: number): Promise<TpokemonState>;
 };
 
+export type TsetState = {
+	(payload: TglobalStore): void;
+};
+
 export type Tactions = {
 	getData: TgetData;
 	setStorage: TsetStorage;
 	getPokemons: TgetPokemons;
+	setState: TsetState;
 };
 
 export type Tstore = {

@@ -29,7 +29,7 @@ describe("AppShowRoom component", () => {
 	beforeEach(async () => {
 		store = createState<TpokemonState>({ pokemons: [] });
 		hooks = createHooks(store, actions);
-		component = () => ({ store, template, styles, hooks });
+		component = () => AppShowRoom();
 
 		getPokemonsStub = sinon
 			.stub(actions, "getPokemons")

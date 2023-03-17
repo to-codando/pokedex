@@ -1,13 +1,13 @@
 import { TState } from "iares";
 import {
 	Tactions,
-	TpokemonState,
+	TglobalStore,
 	TgetData,
 	TsetStorage,
 	TgetPokemons,
 } from "./types";
 
-export const createActions = (store: TState<TpokemonState>): Tactions => {
+export const createActions = (store: TState<TglobalStore>): Tactions => {
 	const endpoint = "https://unpkg.com/pokemons@1.1.0/pokemons.json";
 
 	const getData: TgetData = async () => {
@@ -38,9 +38,14 @@ export const createActions = (store: TState<TpokemonState>): Tactions => {
 		return { pokemons };
 	};
 
+	const setState = (payload: TglobalStore) => {
+		store.setState({ ...store.state, ...payload });
+	};
+
 	return {
 		getData,
 		setStorage,
 		getPokemons,
+		setState,
 	};
 };
