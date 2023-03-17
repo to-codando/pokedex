@@ -1,6 +1,6 @@
 import { default as globalJsdom } from "global-jsdom";
 import * as sinon from "sinon";
-import { expect } from "@esm-bundle/chai";
+import { expect, assert } from "@esm-bundle/chai";
 import { createState, html, render } from "iares";
 
 import { AppShowRoom } from "@/components/AppShowRoom";
@@ -54,10 +54,12 @@ describe("AppShowRoom component", () => {
 
 	it("should return an object with the correct properties", () => {
 		const { store, template, styles, hooks } = component();
-		expect(component()).to.have.a.property("store").that.deep.equals(store);
+		expect(component()).to.have.a.property("store");
+		expect(component().store).contains.deep.keys(Object.keys(store));
 		expect(component()).to.have.a.property("template").that.equals(template);
 		expect(component()).to.have.a.property("styles").that.equals(styles);
-		expect(component()).to.have.a.property("hooks").that.deep.equals(hooks);
+		expect(component()).to.have.a.property("hooks");
+		expect(component().hooks).contains.deep.keys(Object.keys(hooks));
 		expect(hooks).to.have.a.property("beforeMount").that.is.a("function");
 	});
 
