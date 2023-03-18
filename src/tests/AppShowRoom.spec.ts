@@ -75,7 +75,6 @@ describe("AppShowRoom component", () => {
 			...component(),
 			template: () => template({ state: filledPokemonState }),
 		});
-		console.log("document", document.body);
 
 		render(html`<${AppShowRoom} />`, document.body);
 

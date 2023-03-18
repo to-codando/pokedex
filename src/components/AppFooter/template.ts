@@ -4,7 +4,7 @@ import { Ttemplate, TcopyParams } from "./types";
 import { AppContent } from "@/components/AppContent";
 import { AppIcon } from "@/components/AppIcon";
 
-export const template: Ttemplate = ({ props }) => html`
+export const template: Ttemplate = () => html`
   <div class="wrap-ctx">
     <${AppContent}>
       <slot target="content" ctx="app-footer">

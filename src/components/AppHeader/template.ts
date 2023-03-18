@@ -5,7 +5,7 @@ import { AppContent } from "@/components/AppContent";
 import { AppIcon } from "@/components/AppIcon";
 import { AppSearch } from "@/components/AppSearch";
 
-export const template: Ttemplate = ({ props }) => html`
+export const template: Ttemplate = () => html`
   <div class="wrap-ctx">
     <${AppContent}>
       <slot target="content" ctx="app-header">

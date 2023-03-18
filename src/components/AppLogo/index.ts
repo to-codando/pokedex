@@ -1,18 +1,9 @@
-import { Tparams, TtemplateReturn } from "./types.js";
-import { Tprops } from "./types";
+import { TcomponentFactory } from "./types";
 
 import { template } from "./template";
 import { styles } from "./styles";
 
-export type Tcomponent = {
-	(params: Tparams): {
-		template: (params: Tparams) => TtemplateReturn;
-		styles: () => string;
-		props: Tprops;
-	};
-};
-
-export const AppLogo: Tcomponent = ({ props }) => {
+export const AppLogo: TcomponentFactory = ({ props }) => {
 	return {
 		template,
 		styles,

@@ -6,3 +6,13 @@ export type TtemplateReturn =
 	| ({ props: Tprops } & HTMType<void, void, Tparams>)
 	| HTMType<void, void, Tparams>[];
 export type Ttemplate = { (params: Tparams): TtemplateReturn };
+
+export type Tcomponent = {
+	template: (params: Tparams) => TtemplateReturn;
+	styles: () => string;
+	props: Tprops;
+};
+
+export type TcomponentFactory = {
+	(params: Tparams): Tcomponent;
+};
