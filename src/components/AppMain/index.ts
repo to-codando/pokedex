@@ -3,7 +3,9 @@ import { html, css } from "iares";
 import { AppHeader } from "@/components/AppHeader";
 import { AppFooter } from "@/components/AppFooter";
 
-import { store, actions } from "@/store";
+import { TcomponentFactory } from "./types";
+
+import { actions } from "@/store";
 
 const styles = () => css`
   app-main,
@@ -24,7 +26,7 @@ const template = () => html`
   </div>
 `;
 
-export const AppMain = () => {
+export const AppMain: TcomponentFactory = () => {
 	const beforeMount = async () => {
 		const data = await actions.getData();
 		actions.setStorage(data);

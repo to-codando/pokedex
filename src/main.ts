@@ -2,7 +2,7 @@ import { createApp, html, render, router } from "iares";
 import { environment } from "env";
 
 import { routes } from "./routes";
-import { AppMain } from "@/components/appMain";
+import { AppMain } from "@/components/AppMain";
 
 export const appHost = createApp({
 	onMount(context, props) {
