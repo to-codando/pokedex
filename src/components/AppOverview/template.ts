@@ -8,7 +8,7 @@ import { AppTag } from "@/components/AppTag";
 import { AppPokeCard } from "@/components/AppPokeCard";
 import { AppPowerBar } from "@/components/AppPowerBar";
 
-export const template: Ttemplate = ({ props }) => html`
+export const template: Ttemplate = () => html`
   <div class="wrap-ctx">
 
     <${AppContent}>
