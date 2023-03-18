@@ -5,6 +5,9 @@ import {
 	TgetData,
 	TsetStorage,
 	TgetPokemons,
+	TgetPokemonById,
+	Tpokemon,
+	TpokemonState,
 } from "./types";
 
 export const createActions = (store: TState<TglobalStore>): Tactions => {
@@ -38,6 +41,11 @@ export const createActions = (store: TState<TglobalStore>): Tactions => {
 		return { pokemons };
 	};
 
+	const getPokemonById: TgetPokemonById = async (id) => {
+		const { pokemons } = await getData();
+		return pokemons.find((pokemon) => pokemon.national_number === id) || null;
+	};
+
 	const setState = (payload: TglobalStore) => {
 		store.setState({ ...store.state, ...payload });
 	};
@@ -46,6 +54,7 @@ export const createActions = (store: TState<TglobalStore>): Tactions => {
 		getData,
 		setStorage,
 		getPokemons,
+		getPokemonById,
 		setState,
 	};
 };

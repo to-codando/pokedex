@@ -9,18 +9,18 @@ export type TpokemonSprites = {
 };
 
 export type Tpokemon = {
-	national_number: string;
-	evolution: boolean | null;
-	sprites: TpokemonSprites;
-	name: string;
-	type: string[];
-	total: number;
-	hp: number;
-	attack: number;
-	defense: number;
-	sp_atk: number;
-	sp_def: number;
-	speed: number;
+	national_number?: string;
+	evolution?: boolean | null;
+	sprites?: TpokemonSprites;
+	name?: string;
+	type?: string[];
+	total?: number;
+	hp?: number;
+	attack?: number;
+	defense?: number;
+	sp_atk?: number;
+	sp_def?: number;
+	speed?: number;
 };
 
 export type TglobalStore = {
@@ -44,6 +44,10 @@ export type TgetPokemons = {
 	(startingPosition: number, endPosition: number): Promise<TpokemonState>;
 };
 
+export type TgetPokemonById = {
+	(id: string): Promise<Tpokemon | null>;
+};
+
 export type TsetState = {
 	(payload: TglobalStore): void;
 };
@@ -53,6 +57,7 @@ export type Tactions = {
 	setStorage: TsetStorage;
 	getPokemons: TgetPokemons;
 	setState: TsetState;
+	getPokemonById: TgetPokemonById;
 };
 
 export type Tstore = {

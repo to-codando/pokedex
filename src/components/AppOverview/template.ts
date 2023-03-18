@@ -8,7 +8,8 @@ import { AppTag } from "@/components/AppTag";
 import { AppPokeCard } from "@/components/AppPokeCard";
 import { AppPowerBar } from "@/components/AppPowerBar";
 
-export const template: Ttemplate = () => html`
+export const template: Ttemplate = ({ state }) => {
+	return html`
   <div class="wrap-ctx">
 
     <${AppContent}>
@@ -18,7 +19,7 @@ export const template: Ttemplate = () => html`
             <${AppCard}>
               <slot target="content" ctx="app-overview">
                 <div class="wrap-image-ctx">
-                  <img src="/assets/images/pokemon-sample-2.png" />
+                  <img src="${state?.sprites?.large}" />
                 </div>
               </slot>
             </>
@@ -70,3 +71,4 @@ export const template: Ttemplate = () => html`
     </>
   </div>
 `;
+};
