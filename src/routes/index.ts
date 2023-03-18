@@ -21,7 +21,7 @@ export const routes: TRoute[] = [
 		},
 	},
 	{
-		regex: /^#\/$|^#\/pokemon$/,
+		regex: /^#\/$|^#\/pokemon\/\d+$/,
 		start: "#/",
 		mount: ({ context }) => {
 			render(html`<${AppOverview} />`, context);

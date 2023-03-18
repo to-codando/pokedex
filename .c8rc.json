@@ -19,6 +19,8 @@
     "src/utils/"
   ],
   "exclude": [
-    "src/components/**/types.ts"
+    "src/store/**/types.ts",
+    "src/components/**/types.ts",
+    "src/components/**/*.js"
   ]
 }
