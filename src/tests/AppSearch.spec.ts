@@ -1,7 +1,5 @@
 import { expect } from "@esm-bundle/chai";
-
-import { default as globalJsdom } from "global-jsdom";
-
+import globalJsdom from "global-jsdom";
 import { Tcomponent } from "@/components/AppSearch/types";
 import { AppSearch } from "@/components/AppSearch";
 import { createHooks } from "@/components/AppSearch/hooks";
@@ -12,7 +10,7 @@ import { styles } from "@/components/AppSearch/styles";
 import { store, actions } from "@/store";
 
 describe("AppSearch", () => {
-	let cleanup: globalJsdom;
+	let cleanup: { (): void };
 	let component!: Tcomponent;
 
 	before(() => {

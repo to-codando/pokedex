@@ -1,4 +1,4 @@
-import { default as globalJsdom } from "global-jsdom";
+import globalJsdom from "global-jsdom";
 import * as sinon from "sinon";
 import { expect, assert } from "@esm-bundle/chai";
 import { createState, html, render } from "iares";
@@ -16,7 +16,7 @@ describe("AppShowRoom component", () => {
 	let store: ReturnType<typeof createState<TpokemonState>>;
 	let hooks: ReturnType<typeof createHooks>;
 	let getPokemonsStub: sinon.SinonStub;
-	let cleanup: globalJsdom;
+	let cleanup: { (): void };
 
 	before(() => {
 		cleanup = globalJsdom();
