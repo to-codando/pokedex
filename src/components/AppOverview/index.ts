@@ -18,5 +18,6 @@ export const AppOverview: TcomponentFactory = () => {
 		styles,
 		hooks,
 		store,
+		actions,
 	};
 };

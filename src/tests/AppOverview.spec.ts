@@ -29,6 +29,7 @@ describe("AppOverview", () => {
 			"styles",
 			"hooks",
 			"store",
+			"actions",
 		]);
 		expect(component.styles).is.a("function");
 		expect(component.styles()).is.a("string");

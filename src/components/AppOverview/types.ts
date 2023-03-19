@@ -7,6 +7,7 @@ export type TtemplateReturn =
 
 export type TtemplateParams = {
 	state: Tpokemon;
+	actions: Tactions;
 };
 
 export type Ttemplate = { (param: TtemplateParams): TtemplateReturn };
@@ -29,10 +30,18 @@ export type TactionSetPokemon = {
 	(pokemon: Tpokemon): void;
 };
 
+export type TcalculateSkillPower = {
+	(value: number): number;
+};
+
+export type TcalculateTotalPower = TcalculateSkillPower;
+
 export type Tactions = {
 	getPokemonId: { (): string };
 	getPokemonById: TactionGetPokemonById;
 	setPokemon: TactionSetPokemon;
+	calculateSkillPower: TcalculateSkillPower;
+	calculateTotalPower: TcalculateTotalPower;
 };
 
 export type TactionParams = {
@@ -54,3 +63,13 @@ export type ThookParams = {
 export type ThookFactory = {
 	(params: ThookParams): Thooks;
 };
+
+export enum EMaxPower {
+	Total = 1200,
+	HP = 200,
+	Attack = 200,
+	Defense = 200,
+	SpecialAttack = 200,
+	SpecialDefense = 200,
+	Speed = 200,
+}

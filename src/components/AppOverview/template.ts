@@ -8,7 +8,7 @@ import { AppTag } from "@/components/AppTag";
 import { AppPokeCard } from "@/components/AppPokeCard";
 import { AppPowerBar } from "@/components/AppPowerBar";
 
-export const template: Ttemplate = ({ state }) => {
+export const template: Ttemplate = ({ state, actions }) => {
 	return html`
   <div class="wrap-ctx">
 
@@ -25,21 +25,93 @@ export const template: Ttemplate = ({ state }) => {
             </>
           </div>
           <div class="xxl-col-6 xl-col-6 lg-col-12 sm-col-12">
-            <${AppTitle} value="#556699 - Zaramana" height=${3} size=${1}/>
+            <${AppTitle} 
+              value="${state?.national_number} - ${state?.name}" 
+              height=${3} size=${1}
+            />
             <div class="wrap-tag-ctx">
-              <${AppTag} value="ground"/>
-              <${AppTag} value="ground"/>
-              <${AppTag} value="ground"/>
-              <${AppTag} value="ground"/>
+            ${state?.type?.map((type) => html`<${AppTag} value=${type}/>`)}
+              
+
             </div>
             <div class="wrap-powerbar-ctx">
-              <${AppPowerBar} label="HP"                 value=${20} size=${30} />
-              <${AppPowerBar} label="Ataque"             value=${30} size=${40} />
-              <${AppPowerBar} label="Ataque especial"    value=${40} size=${30} />
-              <${AppPowerBar} label="Defesa"             value=${50} size=${60} />
-              <${AppPowerBar} label="Especial defensivo" value=${40} size=${80} />
-              <${AppPowerBar} label="Velocidade"         value=${30} size=${30} />
-              <${AppPowerBar} label="TOTAL"              value=${70} size=${70} />
+            ${
+							state.hp &&
+							html`
+                <${AppPowerBar} 
+                  label="HP"  
+                  value=${state.hp} 
+                  size=${actions.calculateSkillPower(state.hp)} 
+                />           
+              `
+						}
+            
+            ${
+							state.attack &&
+							html`
+                <${AppPowerBar} 
+                  label="Ataque"  
+                  value=${state.attack} 
+                  size=${actions.calculateSkillPower(state.attack)} 
+                />           
+              `
+						}
+
+            ${
+							state.sp_atk &&
+							html`
+                <${AppPowerBar} 
+                  label="Ataque especial"  
+                  value=${state.sp_atk} 
+                  size=${actions.calculateSkillPower(state.sp_atk)} 
+                />           
+              `
+						}
+
+            ${
+							state.defense &&
+							html`
+                <${AppPowerBar} 
+                  label="Defesa"  
+                  value=${state.defense} 
+                  size=${actions.calculateSkillPower(state.defense)} 
+                />           
+              `
+						}
+
+            ${
+							state.sp_def &&
+							html`
+                <${AppPowerBar} 
+                  label="Defesa especial"  
+                  value=${state.sp_def} 
+                  size=${actions.calculateSkillPower(state.sp_def)} 
+                />           
+              `
+						}
+
+            ${
+							state.speed &&
+							html`
+                <${AppPowerBar} 
+                  label="Velocidade"  
+                  value=${state.speed} 
+                  size=${actions.calculateSkillPower(state.speed)} 
+                />           
+              `
+						}
+            
+            ${
+							state.total &&
+							html`
+                <${AppPowerBar} 
+                  label="TOTAL"  
+                  value=${state.total} 
+                  size=${actions.calculateTotalPower(state.total)} 
+                />           
+              `
+						}
+   
             </div>
           </div>
         </div>
