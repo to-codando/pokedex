@@ -16,7 +16,7 @@
     "dev": "cross-env NODE_ENV=development && pnpm start:dev",
     "test": "pnpm run clear:dist && node ./build.spec.coverage.js && mocha ./dist/**/*.js",
     "test:watch": "pnpm run test && pnpm run test:watcher",
-    "test:coverage": "pnpm run coverage:build && c8 --reporter=html  mocha  ./dist/tests",
+    "test:coverage": "pnpm run coverage:build && c8 --reporter=text --reporter=lcov  mocha  ./dist/tests",
     "coverage:build": "pnpm clear:coverage && node ./build.spec.coverage.js",
     "start:dev": "node ./build.development.js && pnpm run lint",
     "start:prod": "cd ./dist && npx http-server",

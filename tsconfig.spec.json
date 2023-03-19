@@ -11,6 +11,12 @@
       "@/tests/*": ["tests/*"],
       "@/mock/*": ["mock/*"],
     },
+    "typeRoots": ["./node_modules/@types"],
+    "types": [
+      "node",
+      "mocha",
+      "chai"
+    ],
     "strict":true,
     "noEmitOnError": true,
     "esModuleInterop": false,

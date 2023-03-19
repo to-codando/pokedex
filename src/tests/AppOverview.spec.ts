@@ -3,19 +3,22 @@ import globalJsdom from "global-jsdom";
 
 import { AppOverview } from "@/components/AppOverview";
 
-import { Tcomponent } from "@/components/AppOverview/types";
+import { Tactions, Tcomponent } from "@/components/AppOverview/types";
+import { createActions } from "@/components/AppOverview/actions";
 import { TState } from "iares/src/state/types";
 import { Tpokemon } from "store/types";
 
 describe("AppOverview", () => {
 	let cleanup: { (): void };
 	let component!: Tcomponent;
-	let store: TState<Tpokemon>;
+	let store!: TState<Tpokemon>;
+	let actions!: Tactions;
 
 	before(() => {
 		cleanup = globalJsdom();
 		component = AppOverview();
 		store = component.store;
+		actions = createActions({ store });
 	});
 
 	after(() => {
@@ -34,10 +37,8 @@ describe("AppOverview", () => {
 		expect(component.styles).is.a("function");
 		expect(component.styles()).is.a("string");
 		expect(component.template).is.a("function");
-		expect(component.template({ state: store.state })).to.have.all.keys([
-			"type",
-			"children",
-			"props",
-		]);
+		expect(
+			component.template({ state: store.state, actions }),
+		).to.have.all.keys(["type", "children", "props"]);
 	});
 });
